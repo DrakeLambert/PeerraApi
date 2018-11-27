@@ -132,7 +132,7 @@ namespace DrakeLambert.Peerra.WebApi.Web
             app.UseHsts();
             app.UseHttpsRedirection();
 
-            var allowedOrigins = Configuration.GetSection("Origins").Get<string[]>();
+            var allowedOrigins = Configuration.GetSection("AlowedOrigins").Get<string[]>();
 
             app.UseCors(builder => builder.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod());
 
