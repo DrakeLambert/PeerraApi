@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web</name>
+    </assembly>
+    <members>
+        <member name="M:DrakeLambert.Peerra.WebApi.Web.Controllers.AccountController.Register(DrakeLambert.Peerra.WebApi.Web.Dto.NewUserDto)">
+            <summary>
+            Registers a new user.
+            </summary>
+            <param name="newUser">The new user's information.</param>
+            <returns>The new user or an error.</returns>
+        </member>
+        <member name="M:DrakeLambert.Peerra.WebApi.Web.Controllers.AccountController.Info">
+            <summary>
+            Gets the user info for the currently logged in user.
+            </summary>
+            <returns>The user's info or an error.</returns>
+        </member>
+        <member name="M:DrakeLambert.Peerra.WebApi.Web.Controllers.AccountController.Access(DrakeLambert.Peerra.WebApi.Web.Dto.UserCredentialsDto)">
+            <summary>
+            Creates tokens for a user.
+            </summary>
+            <param name="userCredentials">The user's credentials.</param>
+            <returns>The new tokens or an error.</returns>
+        </member>
+        <member name="M:DrakeLambert.Peerra.WebApi.Web.Controllers.AccountController.Refresh(DrakeLambert.Peerra.WebApi.Web.Dto.PlainTokenDto)">
+            <summary>
+            Exchanges tokens given a valid refresh token.
+            </summary>
+            <param name="plainTokens">The expired access and valid refresh token.</param>
+            <returns>The new tokens or an error.</returns>
+        </member>
+        <member name="T:DrakeLambert.Peerra.WebApi.Web.Dto.PlainTokenDto">
+            <summary>
+            Plain text access and refresh tokens.
+            </summary>
+        </member>
+        <member name="P:DrakeLambert.Peerra.WebApi.Web.Dto.PlainTokenDto.AccessToken">
+            <summary>
+            Access token.
+            </summary>
+        </member>
+        <member name="P:DrakeLambert.Peerra.WebApi.Web.Dto.PlainTokenDto.RefreshToken">
+            <summary>
+            Refresh token.
+            </summary>
+        </member>
+        <member name="T:DrakeLambert.Peerra.WebApi.Web.Dto.TokenDto">
+            <summary>
+            Access and refresh tokens.
+            </summary>
+        </member>
+        <member name="M:DrakeLambert.Peerra.WebApi.Web.Dto.TokenDto.#ctor(System.ValueTuple{DrakeLambert.Peerra.WebApi.IdentityCore.Entities.AccessToken,DrakeLambert.Peerra.WebApi.IdentityCore.Entities.RefreshToken})">
+            <summary>
+            Creates an instance from the given tuple.
+            </summary>
+        </member>
+        <member name="P:DrakeLambert.Peerra.WebApi.Web.Dto.TokenDto.AccessToken">
+            <summary>
+            The access token.
+            </summary>
+        </member>
+        <member name="P:DrakeLambert.Peerra.WebApi.Web.Dto.TokenDto.RefreshToken">
+            <summary>
+            The refresh token.
+            </summary>
+        </member>
+        <member name="M:DrakeLambert.Peerra.WebApi.Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Creates a new instance with the given configuration.
+            </summary>
+            <param name="configuration">The configuration for the web host.</param>
+        </member>
+        <member name="P:DrakeLambert.Peerra.WebApi.Web.Startup.Configuration">
+            <summary>
+            The configuration for the web host.
+            </summary>
+        </member>
+    </members>
+</doc>
