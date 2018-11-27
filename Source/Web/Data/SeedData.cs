@@ -51,6 +51,10 @@ namespace DrakeLambert.Peerra.WebApi.Web.Data
 
         public void Seed()
         {
+            if (_context.Users.Any())
+            {
+                return;
+            }
             var newUsers = _names.Select(name => new User
             {
                 UserName = name.Item1 + name.Item2.Substring(0, 1),
