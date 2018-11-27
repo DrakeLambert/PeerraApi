@@ -26,13 +26,16 @@ namespace DrakeLambert.Peerra.WebApi.Web
 {
     public class Startup
     {
+        private readonly IHostingEnvironment env;
+
         /// <summary>
         /// Creates a new instance with the given configuration.
         /// </summary>
         /// <param name="configuration">The configuration for the web host.</param>
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            this.env = env;
         }
 
         /// <summary>
@@ -52,8 +55,15 @@ namespace DrakeLambert.Peerra.WebApi.Web
             // Configure Db Context
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseInMemoryDatabase(nameof(ApplicationDbContext));
-                options.EnableSensitiveDataLogging();
+                if (env.IsDevelopment())
+                {
+                    options.UseInMemoryDatabase(nameof(ApplicationDbContext));
+                    options.EnableSensitiveDataLogging();
+                }
+                if (env.IsProduction())
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("default") ?? "defaultconneciton");
+                }
             });
             services.AddTransient<SeedData, SeedData>();
 
@@ -122,12 +132,16 @@ namespace DrakeLambert.Peerra.WebApi.Web
             services.AddTransient(typeof(IAppLogger<>), typeof(AppLogger<>));
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedData seed)
+        public void Configure(IApplicationBuilder app, SeedData seed, ApplicationDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
-            }
                 app.UseDeveloperExceptionPage();
+            }
+            if (env.IsProduction())
+            {
+                dbContext.Database.Migrate();
+            }
 
             app.UseHsts();
             app.UseHttpsRedirection();
