@@ -126,8 +126,8 @@ namespace DrakeLambert.Peerra.WebApi.Web
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
             }
+                app.UseDeveloperExceptionPage();
 
             app.UseHsts();
             app.UseHttpsRedirection();
